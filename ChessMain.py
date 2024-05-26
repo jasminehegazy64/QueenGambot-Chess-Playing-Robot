@@ -213,9 +213,9 @@ def drawGameState(screen, game_state, valid_moves, square_selected, player_one_t
     # Render and display the timers
     font = pygame.font.SysFont(None, 24)
     player_one_timer_text = font.render(
-        "Player One Timer: " + str(int(player_one_timer)) + "s", True, (0, 0, 0))  # Change text color to black
+        "Player One Timer: " + str(int(player_one_timer)) + "s", True, (0, 0, 0))
     player_two_timer_text = font.render(
-        "Player Two Timer: " + str(int(player_two_timer)) + "s", True, (0, 0, 0))  # Change text color to black
+        "Player Two Timer: " + str(int(player_two_timer)) + "s", True, (0, 0, 0))
 
     # Position the timer text in the bottom right corner
     timer_text_position = (
