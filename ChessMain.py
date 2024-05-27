@@ -7,6 +7,7 @@ import pygame as p
 import ChessEngine, ChessAI
 import sys
 from multiprocessing import Process, Queue
+from  ChessArduinoConn import *
 
 BOARD_WIDTH = BOARD_HEIGHT = 512
 MOVE_LOG_PANEL_WIDTH = 250
@@ -118,6 +119,7 @@ def main():
                 ai_move = return_queue.get()
                 if ai_move is None:
                     ai_move = ChessAI.findRandomMove(valid_moves)
+                sendmovetoard(ai_move.getChessNotation())
                 game_state.makeMove(ai_move)
                 move_made = True
                 animate = True
