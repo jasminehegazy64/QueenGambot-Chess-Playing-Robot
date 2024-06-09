@@ -620,9 +620,33 @@ class Move:
                 return self.piece_moved[1] + "x" + self.getRankFile(self.end_row, self.end_col)
         else:
             if self.piece_moved[1] == "p":
-                return self.getRankFile(self.end_row, self.end_col)
+                return self.getRankFile(self.start_row, self.start_col) + self.getRankFile(self.end_row, self.end_col)
             else:
-                return self.piece_moved[1] + self.getRankFile(self.end_row, self.end_col)
+                return self.piece_moved[1] + self.getRankFile(self.start_row, self.start_col) + self.getRankFile(self.end_row, self.end_col)
+
+
+    # def getChessNotation(self):
+    #     if self.is_pawn_promotion:
+    #         return self.getRankFile(self.end_row, self.end_col) + "Q"
+    #     if self.is_castle_move:
+    #         if self.end_col == 1:
+    #             return "0-0-0"
+    #         else:
+    #             return "0-0"
+    #     if self.is_enpassant_move:
+    #         return self.getRankFile(self.start_row, self.start_col)[0] + "x" + self.getRankFile(self.end_row,
+    #                                                                                             self.end_col) + " e.p."
+    #     if self.piece_captured != "--":
+    #         if self.piece_moved[1] == "p":
+    #             return self.getRankFile(self.start_row, self.start_col)[0] + "x" + self.getRankFile(self.end_row,
+    #                                                                                                 self.end_col)
+    #         else:
+    #             return self.piece_moved[1] + "x" + self.getRankFile(self.end_row, self.end_col)
+    #     else:
+    #         if self.piece_moved[1] == "p":
+    #             return self.getRankFile(self.end_row, self.end_col)
+    #         else:
+    #             return self.piece_moved[1] + self.getRankFile(self.end_row, self.end_col)
 
         # TODO Disambiguating moves
 
