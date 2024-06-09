@@ -10,10 +10,10 @@ def sendmovetoard(move ): #remember ya jasmika en el move lezme tebaa sent e5b4 
     move joint up, move other joint for 5 cm forward, joint dowwrds , gripper open
 
     """
-    with serial.Serial('COM3', 9600, timeout=1) as ser:
+    with serial.Serial('COM4', 9600, timeout=1) as ser:
         time.sleep(2) 
         ser.write(move.encode())
 
-if __name__ == "__main__":
-    move = "e2e4"  # Example move
-    sendmovetoard(move)
+# if __name__ == "__main__":
+#     move = "e2e4"  # Example move
+#     sendmovetoard(move)
