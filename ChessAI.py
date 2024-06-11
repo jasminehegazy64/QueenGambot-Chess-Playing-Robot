@@ -75,11 +75,21 @@ def findBestMove(game_state, valid_moves, return_queue):
     return_queue.put(next_move)
 
 
+transposition_table = {}
+
 def findMoveNegaMaxAlphaBeta(game_state, valid_moves, depth, alpha, beta, turn_multiplier):
     global next_move
+    state_key = game_state  # Assuming the game state can be hashed uniquely
+
+    if state_key in transposition_table:
+        tt_entry = transposition_table[state_key]
+        if tt_entry['depth'] >= depth:
+            return tt_entry['score']
+
     if depth == 0:
         return turn_multiplier * scoreBoard(game_state)
     # move ordering - implement later //TODO
+    valid_moves.sort(key=lambda move: (move.is_capture, game_state.in_check), reverse=True)
     max_score = -CHECKMATE
     for move in valid_moves:
         game_state.makeMove(move)
@@ -94,6 +104,8 @@ def findMoveNegaMaxAlphaBeta(game_state, valid_moves, depth, alpha, beta, turn_m
             alpha = max_score
         if alpha >= beta:
             break
+
+    transposition_table[state_key] = {'depth': depth, 'score': max_score}
     return max_score
 
 
