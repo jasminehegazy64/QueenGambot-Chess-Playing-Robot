@@ -16,11 +16,24 @@ def setup_serial():
     return serial_inst
 
 def send_move_to_arm(ser, move):
-    start_pos = move.getChessNotation()[1:3]
-    end_pos = move.getChessNotation()[3:]
+    chess_notation = move.getChessNotation()
+
+    # Check the length of the chess notation
+    if len(chess_notation) == 5:
+        # Skip the first character and send the rest
+        start_pos = chess_notation[1:3]
+        end_pos = chess_notation[3:]
+    elif len(chess_notation) == 4:
+        # Use the notation as it is
+        start_pos = chess_notation[0:2]
+        end_pos = chess_notation[2:]
+    else:
+        raise ValueError("Invalid chess notation length")
+
     move_command = start_pos + end_pos
     print(f"Sending command: {move_command}") 
     ser.write(move_command.encode())
+
 
 
 def close_serial(ser):
